@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_tools.c                                     :+:      :+:    :+:   */
+/*   ft_printf_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:48:08 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:58:37 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libftprintf.h"
 #define	FORMATS "cspdiuxX"
 #define PH_SYMBOL '%'
@@ -27,6 +28,7 @@ int	count_place_holders(char *str)
 	int	count;
 
 	i = 0;
+	count = 0;
 	while (str[i])
 	{
 		if ('%' == str[i] && is_valid_format(&str[i + 1]))

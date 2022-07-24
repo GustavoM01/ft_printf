@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/07/24 18:42:21 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/07/24 18:34:19 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/07/24 19:23:53 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libftprintf.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
-
-int	count_place_holders(char *str);
-int ft_printf(char const *msg, ...);
-
-#endif
+int ft_printf(char const *msg, ...)
+{
+    char *temp_msg = (char *) msg;
+    
+    while ('\0' != *msg)
+    {
+        ft_putchar_fd(*msg, 1);
+        msg++;
+    }
+    return count_place_holders(temp_msg);
+}
