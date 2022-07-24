@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/10 18:14:05 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/10 18:20:41 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
-
-int	count_place_holders(char *str);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

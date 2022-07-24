@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/12 19:05:32 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/25 15:56:01 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*list;
 
-int	count_place_holders(char *str);
-
-#endif
+	list = malloc(sizeof(t_list));
+	if (list)
+	{
+		list->content = content;
+		list->next = NULL;
+		return (list);
+	}
+	return (NULL);
+}

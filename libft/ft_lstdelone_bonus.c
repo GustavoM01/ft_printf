@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/13 14:42:26 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/25 16:07:03 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
-
-int	count_place_holders(char *str);
-
-#endif
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	if (lst != NULL)
+	{
+		del(lst->content);
+		free(lst);
+	}
+}

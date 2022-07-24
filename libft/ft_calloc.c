@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/06 16:35:39 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/06 16:48:06 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
 
-int	count_place_holders(char *str);
-
-#endif
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
+}

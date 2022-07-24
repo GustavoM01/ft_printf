@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/10 12:24:14 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/10 12:56:41 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+{
+	unsigned int	size;
+	unsigned int	i;
+	char			*ptr;
 
-int	count_place_holders(char *str);
-
-#endif
+	if (!s)
+		return (NULL);
+	size = ft_strlen(s) + 1;
+	i = 0;
+	ptr = malloc(sizeof(*s) * size);
+	if (!ptr)
+		return (NULL);
+	while (i < size - 1)
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}

@@ -1,10 +1,12 @@
 #include "libftprintf.h"
+#include "libft/libft.h"
 #include <stdio.h>
-int	main()
+
+int	main(void)
 {
 	int count;
 
-	count = count_ph("%s holea  djfsl % lasjf %c\n alksdji\n");
+	count = count_place_holders("%s holea  djfsl %%%% l% c %x %X %uasjf %c\n alksdji\n");
 	printf("%d\n", count);
 
 	return (0);

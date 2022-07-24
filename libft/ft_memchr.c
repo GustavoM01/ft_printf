@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/02/24 17:58:38 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/11 17:24:35 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned long	i;
+	unsigned char	*ptr;
+	unsigned char	uc;
 
-int	count_place_holders(char *str);
-
-#endif
+	i = 0;
+	ptr = (unsigned char *) s;
+	uc = (unsigned char) c;
+	while (i < n)
+	{
+		if (ptr[i] == uc)
+			return (ptr + i);
+		i ++;
+	}
+	return (NULL);
+}

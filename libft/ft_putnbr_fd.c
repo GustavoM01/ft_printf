@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/10 18:37:24 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/10 18:56:55 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+void static	ft_recursive_put(long n, int fd);
 
-int	count_place_holders(char *str);
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	nlong;
 
-#endif
+	nlong = n;
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nlong *= -1;
+	}
+	ft_recursive_put(nlong, fd);
+}
+
+void static	ft_recursive_put(long n, int fd)
+{
+	char	c;
+
+	if (n / 10 != 0)
+		ft_recursive_put(n / 10, fd);
+	c = (n % 10) + '0';
+	ft_putchar_fd(c, fd);
+}

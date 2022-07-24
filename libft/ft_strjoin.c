@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/06 18:29:16 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/08 13:08:01 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	char	*join;
+	size_t	new_size;
 
-int	count_place_holders(char *str);
-
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	new_size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	join = (char *) malloc(sizeof(*s1) * new_size);
+	if (!join)
+		return (NULL);
+	ft_strlcpy(join, s1, new_size);
+	ft_strlcat(join, s2, new_size);
+	return (join);
+}

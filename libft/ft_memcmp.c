@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/02 16:22:39 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/02 16:55:48 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	unsigned long	i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
-int	count_place_holders(char *str);
-
-#endif
+	i = 0;
+	ptr1 = (unsigned char *) s1;
+	ptr2 = (unsigned char *) s2;
+	if (n == 0)
+		return (0);
+	while (i < n)
+	{
+		if (ptr1[i] != ptr2[i])
+			return (ptr1[i] - ptr2[i]);
+		i++;
+	}	
+	return (0);
+}

@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmaldona <gmaldona@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/02/04 15:11:22 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/12 18:59:15 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned int	i;
 
-int	count_place_holders(char *str);
-
-#endif
+	i = -1;
+	while (++i < n)
+		*(unsigned char *)(s + i) = c;
+	return (s);
+}

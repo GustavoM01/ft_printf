@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/02/24 17:03:31 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/07 17:25:37 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include "libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	char	*cdst;
+	char	*csrc;
+	size_t	i;
 
-int	count_place_holders(char *str);
-
-#endif
+	if (!dst && !src)
+		return (NULL);
+	cdst = (char *) dst;
+	csrc = (char *) src;
+	i = 0;
+	if (csrc < cdst)
+		while (len--)
+			cdst[len] = csrc[len];
+	else
+	{
+		while (i < len)
+		{
+			cdst[i] = csrc[i];
+			i++;
+		}
+	}
+	return (dst);
+}

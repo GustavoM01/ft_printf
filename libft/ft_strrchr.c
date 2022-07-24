@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/06/05 16:39:29 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/06 13:53:05 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/03/11 17:42:13 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#include	"libft.h"
 
-#include "libft/libft.h"
-#include <stdio.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	int		s_len;
+	char	cc;
 
-int	count_place_holders(char *str);
-
-#endif
+	s_len = (int) ft_strlen(s);
+	cc = (char) c;
+	while (s_len >= 0)
+	{
+		if (cc == s[s_len])
+			return ((char *)(s + s_len));
+		s_len--;
+	}
+	return (NULL);
+}
