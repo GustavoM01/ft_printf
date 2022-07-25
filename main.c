@@ -1,14 +1,14 @@
 #include "libftprintf.h"
-#include "libft/libft.h"
 #include <stdio.h>
 
 int	main(void)
 {
 	int count;
 
-	count = ft_printf("%s holea  djfsl %%%% l% c %x %X %uasjf %c\n alksdji\n");
-	printf("-------------------------------\n");
-	printf("%d\n", count);
-
+	// printf("%s holea%                                                           jfsl %%%% l% c %x %X %uasjf %c\n alksdji\n");
+	count = ft_printf("%s holea%    jfsl %%%% l% c %x %X %uasjf %c\n alksdji\n");
+	// printf("-------------------------------\n");
+	// printf("%d\n", count);
+	
 	return (0);
 }

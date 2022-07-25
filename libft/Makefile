@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gmaldona <gmaldona@student.42madrid.com>   +#+  +:+       +#+         #
+#    By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 12:20:33 by gmaldona          #+#    #+#              #
-#    Updated: 2022/03/25 17:18:04 by gmaldona         ###   ########.fr        #
+#    Updated: 2022/07/25 17:19:46 by gmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,8 @@ AR = ar rcs
 
 RM = rm -f
 
-$(NAME):	$(OBJS)
-		$(AR) $(NAME) $(OBJS)
+$(NAME):	$(OBJS) $(B_OBJS)
+		$(AR) $(NAME) $(OBJS) $(B_OBJS) 
 
 all:		$(NAME)
 
