@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/07/25 18:13:45 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:12:23 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_placeholder *save_ph_information(char *placeholder);
 
 t_list	**count_place_holders(char *str)
 {
+	printf("\nfirst\n");
 	// Receive a char *
 	// Declare index and count vars
 	// Loop through char *
@@ -31,13 +32,16 @@ t_list	**count_place_holders(char *str)
 
 	i = 0;
 	count = 0;
+	ph_list = malloc(sizeof(t_list) * 6);
 	while (str[i])
 	{
-		if (PH_SYMBOL == str[i] && ft_strchr(FORMATS, str[i + 1]))
+		if (str[i] && str[i + 1] && PH_SYMBOL == str[i] && ft_strchr(FORMATS, str[i + 1]))
 		{
-			ft_lstadd_back(ph_list, ft_lstnew(save_ph_information(&str[i])));
-			count++;
+			printf("\nEs %%\n");	
+			ft_lstadd_front(ph_list, ft_lstnew(save_ph_information(&str[i])));
+			count++;	
 		}
+		printf("\nAddress: %p", ph_list);
 		i++;
 	}
 	return ph_list;
@@ -61,7 +65,7 @@ static t_placeholder *save_ph_information(char *placeholder)
 	ph->size = 2;
 	ph->type = *(placeholder + 1);
 
-
+	// printf("\n%p\n%d\n%c\n", ph->start, ph->size, ph->type);
 
 	return ph;
 }
