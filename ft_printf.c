@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:34:19 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/08 20:06:19 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:24:51 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int ft_printf(char const *msg, ...)
 {
     int i = 0;
+    int count = 0;
     t_list **list;
     char *temp_msg;
     
     temp_msg = (char *) msg;
-    list = NULL;
     while (temp_msg[i])
     {
         if ('%' != temp_msg[i])
@@ -29,15 +29,11 @@ int ft_printf(char const *msg, ...)
         i++;    
     }
 
-    list = count_place_holders(temp_msg); 
+    count = count_place_holders(list, temp_msg);
 
-    // ft_lstiter(*list, &print_to_sys_out);
-    printf("\n%pn", list);
+    // ft_lstiter(*list, (void *) print_to_sys_out);
 
-    printf("\nto delete\n");
-    ft_lstclear(list, (void *) ft_lstdelone);
+    ft_lstclear(list, (void *) free);
 
-    
-
-    return 5;
+    return count;
 }

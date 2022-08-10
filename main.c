@@ -3,12 +3,13 @@
 
 int	main(void)
 {
-	int count;
-	char *c = "%s holea%    jfsl %%%% l% c %x %X %uasjf %cmake \n alksdji\n";
-	// printf("%s holea%                                                           jfsl %%%% l% c %x %X %uasjf %c\n alksdji\n");
-	count = ft_printf(c);
-	// printf("-------------------------------\n");
-	// printf("%d\n", count);
+	int finalCountdown = 0;
+	char *c = "%s%d%c%d%c\n";
+	printf("count is: %d\n", finalCountdown);
+	
+	finalCountdown = ft_printf(c);
+
+	printf("count is: %d", finalCountdown);
 	
 	// check_leaks();
 	return (0);

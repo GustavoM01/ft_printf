@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/07/25 18:06:30 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:15:34 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_placeholder
 
 } t_placeholder;
 
-t_list	    **count_place_holders(char *str);
+int 	count_place_holders(t_list **list, char *str);
 int     ft_printf(char const *msg, ...);
-void    print_to_sys_out(void *str);
+void    print_to_sys_out(t_placeholder *ph);
 
 #endif
