@@ -6,11 +6,11 @@
 #    By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 13:22:11 by gmaldona          #+#    #+#              #
-#    Updated: 2022/07/25 17:18:37 by gmaldona         ###   ########.fr        #
+#    Updated: 2022/08/11 17:51:21 by gmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c validate_format.c print_to_sys_out.c
+SRCS = ft_printf.c validate_format.c print_to_sys_out.c check_leaks.c clean_ph.c
 
 OBJS = $(SRCS:.c=.o)
 

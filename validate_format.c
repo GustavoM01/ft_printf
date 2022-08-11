@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/10 21:37:05 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:57:17 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ int 	count_place_holders(t_list **list, char *str)
 
 	i = 0;
 	counter = 0;
+	// printf("\nList size: %d\n", ft_lstsize(*list));
 	while (str[i])
 	{
 		if (str[i] && str[i + 1] && PH_SYMBOL == str[i] && ft_strchr(FORMATS, str[i + 1]))
 		{	
 			ft_lstadd_back(list, ft_lstnew(save_ph_information(&str[i])));
+			printf("\npointer last list item: %p\n", ft_lstlast(*list));
 			counter++;	
 		}
 		i++;
@@ -43,7 +45,8 @@ static t_placeholder *save_ph_information(char *placeholder)
 	ph->start = placeholder;
 	ph->size = 2;
 	ph->type = *(placeholder + 1);
-
+	printf("\n%p %p %d %c\n", ph, ph->start, ph->size, ph->type);
+	// printf("\nph pointer: %p\n", ph);
 	return ph;
 }
 
