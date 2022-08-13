@@ -8,15 +8,13 @@ void leaks()
 
 int	main(void)
 {
-	atexit(leaks);
-	int finalCountdown = 0;
-	char *c = "%s\n";
-
-	finalCountdown = ft_printf(c);
-
-	// printf("count is: %d", finalCountdown);
-	
-	// check_leaks();
+	// atexit(leaks);
+	int ft_printf_count = 0;
+	char *ptr = malloc(sizeof(char));
+	printf("\n%p\n", ptr);
+	// int printf_count = 0;
+	ft_printf_count = ft_printf("hola %c caballero %s\n que vive en %p y numero %d\nMejor numero %u", 'h', "del zodiaco", ptr, 500, -500);
+	// printf_count = printf("%");
 	// sleep(5);
 	return (0);
 }

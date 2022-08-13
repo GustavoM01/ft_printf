@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:34:19 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/11 18:02:24 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/13 21:53:04 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,36 @@
 
 int ft_printf(char const *msg, ...)
 {
-    int i = 0;
-    int count = 0;
+    int count;
     t_list **list;
-    char *temp_msg;
-    
-    temp_msg = (char *) msg;
-    list = (t_list **) malloc(sizeof(t_list) * 1);
+
+    count = 0;
+    list = malloc(sizeof(t_list *));
     *list = NULL;
-    // printf("\nft_printf line 24 - size of list: %d\n", ft_lstsize(*list));
-    while (temp_msg[i])
+    if (list)
     {
-        if ('%' != temp_msg[i])
+        int i;
+
+        i = 0;
+        count = create_ph_list(list, (char *) msg);
+        va_list args;
+        va_start(args, msg);
+        while (msg[i])
         {
-            ft_putchar_fd(temp_msg[i], 1);
+            if (is_ph_address(&msg[i], list))
+            {
+                print_ph(list, args);
+                if ((*list)->next)
+                    *list = (*list)->next;
+                i++;
+            } else {
+                ft_putchar_fd(msg[i], 1);
+            }   
+            i++; 
         }
-        i++;    
     }
-    // printf("ft_printf line 32");
-    count = count_place_holders(list, temp_msg);
-
-    // ft_lstiter(*list, (void *) print_to_sys_out);
-
+    // // ft_lstiter(*list, (void *) print_to_sys_out);
     ft_lstclear(list, (void *) free);
-
     free(list);
-
     return count;
 }
