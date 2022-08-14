@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 20:09:49 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/13 17:28:56 by gmaldona         ###   ########.fr       */
+/*   Created: 2022/03/10 18:37:24 by gmaldona          #+#    #+#             */
+/*   Updated: 2022/08/14 13:50:13 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void static	ft_recursive_put_u(unsigned long n, int fd);
+
+void	ft_putunbr_fd(unsigned int n, int fd)
 {
-	if (lst == NULL)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	ft_lstlast(*lst)->next = new;
+	unsigned long	nlong;
+
+	nlong = n;
+	ft_recursive_put_u(nlong, fd);
+}
+
+void static	ft_recursive_put_u(unsigned long n, int fd)
+{
+	char	c;
+
+	if (n / 10 != 0)
+		ft_recursive_put_u(n / 10, fd);
+	c = (n % 10) + '0';
+	ft_putchar_fd(c, fd);
 }

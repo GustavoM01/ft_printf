@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/13 22:23:26 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/14 16:54:46 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,15 @@ void print_ph(t_list **list, va_list args)
 	else if (format == 's')
 		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (format == 'p')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		ft_putptr(va_arg(args, unsigned int));
 	else if (format  == 'd' || format == 'i')
 		ft_putnbr_fd(va_arg(args, int), 1);
 	else if (format == 'u')
-		ft_putnbr_fd(va_arg(args, unsigned int), 1);
-		
+		ft_putunbr_fd(va_arg(args, unsigned int), 1);
+	else if (format == 'x')
+		ft_puthex_l(va_arg(args, int));
+	else if (format == 'X')
+		ft_puthex_u(va_arg(args, int));
 }
 
 static t_placeholder *save_ph_information(char *placeholder)

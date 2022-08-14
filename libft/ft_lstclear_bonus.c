@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 15:12:34 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/11 18:03:12 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/13 17:30:22 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	printf("\nft_lstclear first line\n");
 	t_list	*tmp;
 
 	tmp = NULL;
@@ -22,13 +21,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	if (*lst == NULL)
 	{
-		printf("\nft_lstclear line 23\n");
 		lst = NULL;
 		return ;
 	}
 	while (*lst != NULL)
 	{
-		printf("\npointer to free: %p\n", *lst);
 		tmp = (*lst)->next;
 		ft_lstdelone(*lst, del);
 		*lst = tmp;
