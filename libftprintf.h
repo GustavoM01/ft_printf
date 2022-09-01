@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/13 21:15:15 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:04:24 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_placeholder
 
 int 	create_ph_list(t_list **list, char *str);
 int     ft_printf(char const *msg, ...);
-short is_ph_address(const char *msg, t_list **current);
-void print_ph(t_list **list, va_list args);
+short   is_ph_address(const char *msg, t_list **current);
+void    print_ph(t_list **list, va_list args);
 
 #endif

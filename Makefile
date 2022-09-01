@@ -6,7 +6,7 @@
 #    By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 13:22:11 by gmaldona          #+#    #+#              #
-#    Updated: 2022/08/13 21:15:04 by gmaldona         ###   ########.fr        #
+#    Updated: 2022/09/01 21:20:57 by gmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,21 +14,28 @@ SRCS = ft_printf.c ph_handler.c
 
 OBJS = $(SRCS:.c=.o)
 
-NAME = libftprintf.a
+NAME = libftprintf.a 
+
+LIBFT = libft.a
 
 CC = clang
 
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
-AR = ar rcs
+AR = ar -rcs
+
+ARQ = ar -q
 
 RM = rm -f
 
 $(NAME): $(OBJS)
-		$(AR) $(NAME) $(OBJS)
-		cd ./libft && $(MAKE)
+		$(MAKE) -C libft
+		cp ./libft/$(LIBFT) $(NAME)
+		$(ARQ) $(NAME) $(OBJS) 
+		
 
-all: $(NAME)
+all:
+		make $(NAME)
 
 clean: 
 		$(RM) $(OBJS)
@@ -39,6 +46,6 @@ fclean:		clean
 		cd ./libft && $(MAKE) fclean
 
 re:		fclean all
-
+		
 .PHONY: all clean fclean re
 
