@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/09/01 23:47:48 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:17:08 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 static t_placeholder	*save_ph_information(char *placeholder);
 static char				get_format(t_list **list);
 
-int	create_ph_list(t_list **list, char *str)
+int	create_ph_list(t_list **ph_list, char *msg)
 {
 	int	i;
 	int	counter;
 
 	i = 0;
 	counter = 0;
-	while (str[i])
+	while (msg[i])
 	{
-		if (str[i] && str[i + 1] && PH_SYMBOL == str[i] && ft_strchr(FORMATS, str[i + 1]))
+		if (PH_SYMBOL == msg[i] && msg[i + 1] && ft_strchr(FORMATS, msg[i + 1]))
 		{	
-			ft_lstadd_back(list, ft_lstnew(save_ph_information(&str[i])));
+			ft_lstadd_back(ph_list, ft_lstnew(save_ph_information(&msg[i])));
 			counter++;
 		}
 		i++;

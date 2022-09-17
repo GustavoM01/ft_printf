@@ -6,39 +6,42 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:34:19 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/09/01 23:39:13 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:43:34 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	write_list(char *msg, va_list args, t_list **list);
+static void	write_ph_list(char *msg, va_list args, t_list **list);
 
 int	ft_printf(char const *msg, ...)
 {
 	int		count;
-	t_list	**list;
+	t_list	**ph_list;
 	va_list	args;
 
 	count = 0;
-	list = malloc(sizeof(t_list *));
-	*list = NULL;
-	if (list)
+	ph_list = malloc(sizeof(t_list *));
+	*ph_list = NULL;
+	if (ph_list)
 	{
 		va_start(args, msg);
-		count = create_ph_list(list, (char *) msg);
-		write_list((char *) msg, args, list);
-	}
-	ft_lstclear(list, (void *) free);
-	free(list);
+		count = create_ph_list(ph_list, (char *) msg);
+		write_ph_list((char *) msg, args, ph_list);
+	}	
+	va_end(args);
+	ft_lstclear(ph_list, (void *) free);
+	free(ph_list);
 	return (count);
 }
 
-static void	write_list(char *msg, va_list args, t_list **list)
+static void	write_ph_list(char *msg, va_list args, t_list **list)
 {
 	int	i;
+	t_list *firstItemAdd;
 
 	i = 0;
+	firstItemAdd = *list;
 	while (msg[i])
 	{
 		if (is_ph_address(&msg[i], list))
@@ -52,4 +55,5 @@ static void	write_list(char *msg, va_list args, t_list **list)
 			ft_putchar_fd(msg[i], 1);
 	i++;
 	}
+	*list = firstItemAdd;
 }
