@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/09/17 13:20:48 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:23:45 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@
 typedef struct s_placeholder
 {
 	char			*start;
-	unsigned int	size;
 	char			type;
+	short			numeral_flag;
+	short			space_flag;
+	short			sign_flag;
 
 }	t_placeholder;
 
-int		create_ph_list(t_list **list, char *str);
 int		ft_printf(char const *msg, ...);
-short	is_ph_address(const char *msg, t_list **current);
-void	print_ph(t_list **list, va_list args);
+int		read_msg(t_list **list, char *str);
+int		write_msg(char *msg, va_list args, t_list **ph_list);
 
 #endif

@@ -6,11 +6,11 @@
 #    By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 13:22:11 by gmaldona          #+#    #+#              #
-#    Updated: 2022/09/01 21:20:57 by gmaldona         ###   ########.fr        #
+#    Updated: 2022/09/17 19:22:06 by gmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c ph_handler.c
+SRCS = ft_printf.c ph_reader.c ph_writer.c
 
 OBJS = $(SRCS:.c=.o)
 
