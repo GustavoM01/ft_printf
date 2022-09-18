@@ -6,35 +6,47 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:18:47 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/09/17 20:45:48 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:46:40 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-static short	is_ph_address(const char *msg, t_list **current);
-static int	print_ph(t_list **list, va_list args);
-static char	get_format(t_list **list);
-static int print_flags(char format, t_list **list, va_list args_cpy);
+static int		writer_cataloger(char *msg, va_list args, t_list **ph_list);
+static int		print_ph(t_list **list, va_list args);
+static short	is_ph_address(const char *msg, t_list *current);
+static int		print_flags(char format, t_list **list, va_list args_cpy);
 
 int	write_msg(char *msg, va_list args, t_list **ph_list)
 {
-	int count;
-	int	i;
-	t_list *firstItemAdd;
+	int		count;
+	t_list	*first_item;
+
+	count = 0;
+	first_item = *ph_list;
+	count = writer_cataloger(msg, args, ph_list);
+	*ph_list = first_item;
+	return (count);
+}
+
+static int	writer_cataloger(char *msg, va_list args, t_list **ph_list)
+{
+	int		count;
+	int		i;
 
 	i = 0;
 	count = 0;
-	firstItemAdd = *ph_list;
 	while (msg[i])
 	{
-		if (*ph_list != NULL && is_ph_address(&msg[i], ph_list))
+		if (*ph_list != NULL && is_ph_address(msg + i, *ph_list))
 		{
-			i += print_ph(ph_list, args);
-			if ((*ph_list)->next)
-				*ph_list = (*ph_list)->next;
-			i++;
+			i += ((t_placeholder *)(*ph_list)->content)->size;
+			count += print_ph(ph_list, args);
+			*ph_list = (*ph_list)->next;
 		}
+		else if (msg[i] == PH_SYMBOL)
+			while (ft_strrchr(FLAGS, msg[i + 1]))
+				i++;
 		else
 		{
 			ft_putchar_fd(msg[i], 1);
@@ -42,13 +54,12 @@ int	write_msg(char *msg, va_list args, t_list **ph_list)
 		}
 	i++;
 	}
-	*ph_list = firstItemAdd;
 	return (count);
 }
 
-static short	is_ph_address(const char *msg, t_list **current)
+static short	is_ph_address(const char *msg, t_list *current)
 {
-	if (msg == ((t_placeholder *)((*current)->content))->start)
+	if (msg == ((t_placeholder *)(current->content))->start)
 		return (1);
 	else
 		return (0);
@@ -57,13 +68,12 @@ static short	is_ph_address(const char *msg, t_list **current)
 static int	print_ph(t_list **list, va_list args)
 {
 	char	format;
-	va_list args_cpy;
-	int	result;
+	va_list	args_cpy;
+	int		size;
 
 	va_copy(args_cpy, args);
-	format = get_format(list);
-	result = 0;
-	result += print_flags(format, list, args_cpy);
+	format = ((t_placeholder *)((*list)->content))->type;
+	size = print_flags(format, list, args_cpy);
 	if (format == 'c')
 		ft_putchar_fd((char) va_arg(args, int), 1);
 	else if (format == 's')
@@ -78,34 +88,26 @@ static int	print_ph(t_list **list, va_list args)
 		ft_puthex_l(va_arg(args, int));
 	else if (format == 'X')
 		ft_puthex_u(va_arg(args, int));
-	return (result);
+	return (size);
 }
 
-static char	get_format(t_list **list)
+static	int	print_flags(char format, t_list **list, va_list args_cpy)
 {
-	char	format;
+	t_placeholder	*current_ph;
+	int				result;
 
-	format = ((t_placeholder *)((*list)->content))->type;
-	return (format);
-}
-
-static int print_flags(char format, t_list **list, va_list args_cpy)
-{
-	t_placeholder *current_ph;
-	int	result;
-
-	result = 0;
+	result = 1;
 	current_ph = (*list)->content;
 	if (current_ph->sign_flag)
 	{
 		if ((format == 'd' || format == 'i'))
 		{
-					if (va_arg(args_cpy, int) >= 0)
-			ft_putchar_fd('+', 1);
-		else
-			ft_putchar_fd('-', 1);
+			if (va_arg(args_cpy, int) >= 0)
+				ft_putchar_fd('+', 1);
+			else
+				ft_putchar_fd('-', 1);
+			result++;
 		}
-		result++;
 	}
 	return (result);
 }
