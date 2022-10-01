@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 11:36:24 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/08/14 16:55:46 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:35:10 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 # define HEX_L "0123456789abcdef"
 # define HEX_U "0123456789ABCDEF"
@@ -40,15 +39,15 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *s, int c, size_t n);
-void	ft_putchar_fd(char c, int fd);
+int		ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putunbr_fd(unsigned int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
+int		ft_putnbr_fd(int n, int fd);
+int		ft_putunbr_fd(unsigned int n, int fd);
+int		ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_base(int nbr, char *base);
-void	ft_putptr(unsigned long nbr);
-void	ft_puthex_l(unsigned long nbr);
-void	ft_puthex_u(unsigned long nbr);
+int		ft_putptr(unsigned long nbr);
+int		ft_puthex_l(unsigned long nbr);
+int		ft_puthex_u(unsigned long nbr);
 char	**ft_split(const char *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);

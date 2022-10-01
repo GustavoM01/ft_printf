@@ -6,7 +6,7 @@
 #    By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 13:22:11 by gmaldona          #+#    #+#              #
-#    Updated: 2022/09/17 19:22:06 by gmaldona         ###   ########.fr        #
+#    Updated: 2022/10/01 21:43:52 by gmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ fclean:		clean
 		cd ./libft && $(MAKE) fclean
 
 re:		fclean all
+
+bonus:
+		make $(NAME)
 		
 .PHONY: all clean fclean re
 

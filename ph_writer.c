@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:18:47 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/09/18 16:46:40 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:25:22 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,21 @@ static int	print_ph(t_list **list, va_list args)
 	format = ((t_placeholder *)((*list)->content))->type;
 	size = print_flags(format, list, args_cpy);
 	if (format == 'c')
-		ft_putchar_fd((char) va_arg(args, int), 1);
+		size += ft_putchar_fd((char) va_arg(args, int), 1);
 	else if (format == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		size += ft_putstr_fd(va_arg(args, char *), 1);
 	else if (format == 'p')
-		ft_putptr(va_arg(args, unsigned int));
+		size += ft_putptr(va_arg(args, unsigned long));
 	else if (format == 'd' || format == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		size += ft_putnbr_fd(va_arg(args, int), 1);
 	else if (format == 'u')
-		ft_putunbr_fd(va_arg(args, unsigned int), 1);
+		size += ft_putunbr_fd(va_arg(args, unsigned int), 1);
 	else if (format == 'x')
-		ft_puthex_l(va_arg(args, int));
+		size += ft_puthex_l(va_arg(args, unsigned int));
 	else if (format == 'X')
-		ft_puthex_u(va_arg(args, int));
+		size += ft_puthex_u(va_arg(args, unsigned int));
+	else if (format == PH_SYMBOL)
+		size += ft_putchar_fd(PH_SYMBOL, 1);
 	return (size);
 }
 
@@ -96,7 +98,7 @@ static	int	print_flags(char format, t_list **list, va_list args_cpy)
 	t_placeholder	*current_ph;
 	int				result;
 
-	result = 1;
+	result = 0;
 	current_ph = (*list)->content;
 	if (current_ph->sign_flag)
 	{

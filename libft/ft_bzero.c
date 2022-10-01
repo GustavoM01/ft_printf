@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmaldona <gmaldona@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 15:56:19 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/03/12 18:58:12 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/08/13 14:23:50 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_bzero(void *s, size_t n)
 {
 	if (n != 0)
-		ft_memset(s, '\0', n);
+		ft_memset(s, 0, n);
 }

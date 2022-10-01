@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/09/18 16:46:41 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:24:52 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	read_msg(t_list **ph_list, char *msg)
 		{
 			current_ph = save_ph_information(msg + i);
 			if (current_ph != NULL)
+			{
 				ft_lstadd_back(ph_list, ft_lstnew(current_ph));
+				i += current_ph->size;
+			}
 		}	
 		i++;
 	}
@@ -72,12 +75,12 @@ static short	is_valid_format(char *msg, t_placeholder *ph)
 			ph->space_flag = 1;
 		else if (msg[i] == '+')
 			ph->sign_flag = 1;
-		else if (ft_strchr(FORMATS, msg[i]))
+		else if (ft_strchr(FORMATS, msg[i]) || msg[i] == PH_SYMBOL)
 		{
 			result = 1;
 			ph->type = msg[i];
 		}
-		else
+		else if (!ft_isalpha(msg[i]))
 			return (result);
 		i++;
 	}

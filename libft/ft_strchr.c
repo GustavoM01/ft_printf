@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmaldona <gmaldona@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 13:05:20 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/03/11 17:34:43 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/09/01 00:59:08 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
