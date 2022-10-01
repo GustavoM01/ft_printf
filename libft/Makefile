@@ -6,7 +6,7 @@
 #    By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 12:20:33 by gmaldona          #+#    #+#              #
-#    Updated: 2022/09/01 21:05:58 by gmaldona         ###   ########.fr        #
+#    Updated: 2022/10/01 23:02:06 by gmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRCS = 	ft_atoi.c ft_bzero.c ft_calloc.c\
 		 
 
 OBJS = $(SRCS:.c=.o)
+
+PARENT_LIB = libftprintf.a
 	
 NAME = libft.a
 
@@ -52,4 +54,9 @@ fclean:		clean
 
 re:		fclean all
 
-.PHONY:		all clean fclean re bonus
+aux:		$(OBJS)	
+		make $(NAME)
+		cp $(NAME) ./../$(PARENT_LIB)
+
+
+.PHONY:		all clean fclean re bonus aux

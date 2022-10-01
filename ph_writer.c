@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:18:47 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/10/01 21:25:22 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:10:48 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int		writer_cataloger(char *msg, va_list args, t_list **ph_list);
 static int		print_ph(t_list **list, va_list args);
 static short	is_ph_address(const char *msg, t_list *current);
-static int		print_flags(char format, t_list **list, va_list args_cpy);
+static int		print_flags(char format, t_placeholder *ph, va_list args_cpy);
 
 int	write_msg(char *msg, va_list args, t_list **ph_list)
 {
@@ -26,6 +26,7 @@ int	write_msg(char *msg, va_list args, t_list **ph_list)
 	first_item = *ph_list;
 	count = writer_cataloger(msg, args, ph_list);
 	*ph_list = first_item;
+	va_end(args);
 	return (count);
 }
 
@@ -73,7 +74,7 @@ static int	print_ph(t_list **list, va_list args)
 
 	va_copy(args_cpy, args);
 	format = ((t_placeholder *)((*list)->content))->type;
-	size = print_flags(format, list, args_cpy);
+	size = print_flags(format, (*list)->content, args_cpy);
 	if (format == 'c')
 		size += ft_putchar_fd((char) va_arg(args, int), 1);
 	else if (format == 's')
@@ -90,24 +91,30 @@ static int	print_ph(t_list **list, va_list args)
 		size += ft_puthex_u(va_arg(args, unsigned int));
 	else if (format == PH_SYMBOL)
 		size += ft_putchar_fd(PH_SYMBOL, 1);
+	va_end(args_cpy);
 	return (size);
 }
 
-static	int	print_flags(char format, t_list **list, va_list args_cpy)
+static	int	print_flags(char format, t_placeholder *ph, va_list args_cpy)
 {
-	t_placeholder	*current_ph;
-	int				result;
+	int	result;
 
 	result = 0;
-	current_ph = (*list)->content;
-	if (current_ph->sign_flag)
+	if (ph->sign_flag && (format == 'd' || format == 'i'))
 	{
-		if ((format == 'd' || format == 'i'))
+		if (va_arg(args_cpy, int) >= 0)
 		{
-			if (va_arg(args_cpy, int) >= 0)
-				ft_putchar_fd('+', 1);
-			else
-				ft_putchar_fd('-', 1);
+			ft_putchar_fd('+', 1);
+			result++;
+		}
+	}
+	else if (ph->numeral_flag && (format == 'x' || format == 'X'))
+		result += ft_put_prefix(format, va_arg(args_cpy, unsigned int));
+	else if (ph->space_flag && (format == 'd' || format == 'i'))
+	{
+		if (va_arg(args_cpy, int) >= 0)
+		{
+			ft_putchar_fd(' ', 1);
 			result++;
 		}
 	}

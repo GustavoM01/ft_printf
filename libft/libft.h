@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 11:36:24 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/10/01 21:35:10 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:18:07 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_putnbr_base(int nbr, char *base);
 int		ft_putptr(unsigned long nbr);
 int		ft_puthex_l(unsigned long nbr);
 int		ft_puthex_u(unsigned long nbr);
+int		ft_put_prefix(char format, unsigned long nbr);
 char	**ft_split(const char *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);

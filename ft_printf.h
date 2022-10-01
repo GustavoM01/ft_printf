@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/10/01 21:35:59 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:10:02 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # define PH_SYMBOL '%'
 # include "libft/libft.h"
 # include <stdarg.h>
-
 
 typedef struct s_placeholder
 {

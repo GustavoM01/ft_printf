@@ -6,7 +6,7 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/10/01 21:24:52 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:10:40 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	read_msg(t_list **ph_list, char *msg)
 				ft_lstadd_back(ph_list, ft_lstnew(current_ph));
 				i += current_ph->size;
 			}
-		}	
+		}
 		i++;
 	}
 }

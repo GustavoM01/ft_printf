@@ -6,7 +6,7 @@
 #    By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 13:22:11 by gmaldona          #+#    #+#              #
-#    Updated: 2022/10/01 21:43:52 by gmaldona         ###   ########.fr        #
+#    Updated: 2022/10/01 23:16:21 by gmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,13 @@ CFLAGS = -Wall -Werror -Wextra
 
 AR = ar -rcs
 
-ARQ = ar -q
+ARRU = ar -ru
 
 RM = rm -f
 
-$(NAME): $(OBJS)
-		$(MAKE) -C libft
-		cp ./libft/$(LIBFT) $(NAME)
-		$(ARQ) $(NAME) $(OBJS) 
+$(NAME): 	$(OBJS)
+		$(MAKE) -C ./libft aux
+		$(ARRU) $(NAME) $(OBJS) 
 		
 
 all:
@@ -50,5 +49,5 @@ re:		fclean all
 bonus:
 		make $(NAME)
 		
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
