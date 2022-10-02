@@ -6,15 +6,15 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:38:06 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/10/02 00:10:02 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/02 13:17:01 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define FORMATS "cspdiuxX"
+# define FMTS "cspdiuxX"
 # define FLAGS "# +"
-# define PH_SYMBOL '%'
+# define PH '%'
 # include "libft/libft.h"
 # include <stdarg.h>
 
@@ -24,10 +24,11 @@ typedef struct s_placeholder
 	char			type;
 	unsigned short	size;
 	short			numeral_flag;
-	short			space_flag;
-	short			sign_flag;
+	short			s_flag;
+	short			sg_flag;
+	short			nbr_flag;
 
-}	t_placeholder;
+}	t_ph;
 
 int		ft_printf(char const *msg, ...);
 void	read_msg(t_list **list, char *str);

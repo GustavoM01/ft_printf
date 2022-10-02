@@ -6,25 +6,26 @@
 /*   By: gmaldona <gmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:30:33 by gmaldona          #+#    #+#             */
-/*   Updated: 2022/10/02 00:10:40 by gmaldona         ###   ########.fr       */
+/*   Updated: 2022/10/02 13:13:05 by gmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_placeholder	*save_ph_information(char *current_add);
-static short			is_valid_format(char *msg, t_placeholder *ph);
-static void				set_default_ph(t_placeholder *ph);
+static t_ph		*save_ph_information(char *current_add);
+static short	is_valid_format(char *msg, t_ph *ph);
+static void		set_default_ph(t_ph *ph);
+static void		set_nbr_flag(char c, t_ph *ph);
 
 void	read_msg(t_list **ph_list, char *msg)
 {
-	int				i;
-	t_placeholder	*current_ph;
+	int		i;
+	t_ph	*current_ph;
 
 	i = 0;
 	while (msg[i])
 	{
-		if (PH_SYMBOL == msg[i])
+		if (PH == msg[i])
 		{
 			current_ph = save_ph_information(msg + i);
 			if (current_ph != NULL)
@@ -37,16 +38,17 @@ void	read_msg(t_list **ph_list, char *msg)
 	}
 }
 
-static t_placeholder	*save_ph_information(char *current_add)
+static t_ph	*save_ph_information(char *current_add)
 {
-	int				i;
-	t_placeholder	*ph;
+	int		i;
+	t_ph	*ph;
 
 	i = 0;
-	ph = malloc(sizeof(t_placeholder));
+	ph = malloc(sizeof(t_ph));
 	if (ph)
 	{
 		ph->start = NULL;
+		set_default_ph(ph);
 		if (is_valid_format(current_add + 1, ph))
 			ph->start = current_add;
 		else
@@ -58,39 +60,45 @@ static t_placeholder	*save_ph_information(char *current_add)
 	return (ph);
 }
 
-static short	is_valid_format(char *msg, t_placeholder *ph)
+static short	is_valid_format(char *msg, t_ph *ph)
 {
-	short	result;
 	int		i;
 
-	result = 0;
 	i = 0;
-	set_default_ph(ph);
-	while (msg[i] && result == 0)
+	while (msg[i])
 	{
 		ph->size++;
 		if (msg[i] == '#')
 			ph->numeral_flag = 1;
 		else if (msg[i] == ' ')
-			ph->space_flag = 1;
+			ph->s_flag = 1;
 		else if (msg[i] == '+')
-			ph->sign_flag = 1;
-		else if (ft_strchr(FORMATS, msg[i]) || msg[i] == PH_SYMBOL)
+			ph->sg_flag = 1;
+		else if (ft_isdigit(msg[i]))
+			set_nbr_flag(msg[i], ph);
+		else if (ft_strchr(FMTS, msg[i]) || msg[i] == PH)
 		{
-			result = 1;
 			ph->type = msg[i];
+			return (1);
 		}
-		else if (!ft_isalpha(msg[i]))
-			return (result);
+		else if (!ft_isalnum(msg[i]))
+			return (0);
 		i++;
 	}
-	return (result);
+	return (0);
 }
 
-static void	set_default_ph(t_placeholder *ph)
+static void	set_default_ph(t_ph *ph)
 {
 	ph->numeral_flag = 0;
-	ph->sign_flag = 0;
-	ph->space_flag = 0;
+	ph->sg_flag = 0;
+	ph->s_flag = 0;
 	ph->size = 0;
+	ph->nbr_flag = 0;
+}
+
+static void	set_nbr_flag(char c, t_ph *ph)
+{
+	ph->nbr_flag *= 10;
+	ph->nbr_flag += (c - '0');
 }
